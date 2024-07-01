@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <netdb.h>
 #include <string.h> //for memset
-
+#include <unistd.h>
 /**
  * @brief This function is used to open a client connection to a server
  * @param hostname The hostname of the server
