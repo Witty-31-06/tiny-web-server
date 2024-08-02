@@ -1,3 +1,5 @@
+#ifndef NETINCLUDE_H 
+#define NETINCLUDE_H 
 #define _POSIX_C_SOURCE 200112L
 
 #include "ioheader.h"
@@ -18,3 +20,4 @@ void read_reqesthdrs(rio_t *rio);
 void serve_static(int fd, char *filename, int sz);
 void serve_dynamic(int fd, char *filename, char * args);
 int parse_uri(char uri[], char filename[], char args[]);
+#endif
