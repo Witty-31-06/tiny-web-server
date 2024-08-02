@@ -9,6 +9,7 @@ int main(void)
 
     // Extract the two arguments
     if ((buf = getenv("QUERY_STRING")) != NULL) {
+        //Args are passed in url as url.com?param1&param2
         p = strchr(buf, '&');
         *p = '\0';
         strcpy(arg1, buf);
@@ -17,6 +18,7 @@ int main(void)
         n2 = atoi(arg2);
     }
 
+    //HTTP Response Body
     sprintf(content, "QUERY_STRING=%s", buf);
     sprintf(content, "Welcome to add.com: ");
     sprintf(content, "%sTHE Internet addition portal.\r\n<p>", content);

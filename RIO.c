@@ -78,9 +78,9 @@ ssize_t rio_writen(int fd, void *usrbuf, size_t n)
  */
 void rio_readinitb(rio_t *rp, int fd)
 {
-    rp->rio_fd = fd;
-    rp->rio_cnt = 0;
-    rp->rio_bufptr = rp->rio_buf;
+    rp->rio_fd = fd; //will read from the file desc fd
+    rp->rio_cnt = 0; //initially 0 bytes
+    rp->rio_bufptr = rp->rio_buf; 
 }
 
 /**
@@ -138,7 +138,7 @@ ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen)
     for(n = 1; n < maxlen; n++) {
         if((rc = rio_read(rp, &c, 1)) == 1) {
             *bufp++ = c;
-            if(c == '\n') {
+            if(c == '\n') { //Newline encountered
                 n++;
                 break;
             }
