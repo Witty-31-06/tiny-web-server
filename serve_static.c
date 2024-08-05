@@ -19,6 +19,7 @@ void serve_static(int fd, char *filename, int filesize)
     sprintf(buf, "%sContent-length: %d\r\n", buf, filesize);
     sprintf(buf, "%sContent-Type: %s\r\n", buf, filetype);
     sprintf(buf, "%s\r\n", buf);
+    
     rio_writen(fd, buf, strlen(buf));
     
     printf("Response Headers: ");

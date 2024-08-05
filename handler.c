@@ -44,7 +44,7 @@ void handler(int connfd)
             return;
         }
         else serve_static(connfd, filename, sbuf.st_size);
-        exit(1);
+        // exit(1);
     }
     //Dynamic content
     else
