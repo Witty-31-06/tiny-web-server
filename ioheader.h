@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <sys/types.h>
-#include <stdlib.h>
-#include <string.h>
 #include <unistd.h>
 #define RIO_BUFSIZE 8192
 #define MAXLINE 8192

@@ -2,7 +2,7 @@
 #include <sys/types.h>
 #include <errno.h>
 #include "ioheader.h"
-
+#include <string.h>
 
 /**
  * @brief Read n bytes from a file descriptor
@@ -136,7 +136,7 @@ ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen)
     char c, *bufp = (char *)usrbuf;
 
     for(n = 1; n < maxlen; n++) {
-        if((rc = rio_read(rp, &c, 1)) == 1) {
+        if((rc = rio_read(rp, &c, 1)) == 1) { //Read 1 byte at a time
             *bufp++ = c;
             if(c == '\n') { //Newline encountered
                 n++;

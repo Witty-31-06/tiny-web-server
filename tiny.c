@@ -4,7 +4,6 @@
 #define MAXLINE 8192
 //protoypes
 
-
 int main(int argc, char **argv)
 {
     int listenfd, connfd;
@@ -18,7 +17,7 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    listenfd = open_listenfd(argv[1]);
+    listenfd = open_listenfd(argv[1]); //opening listening socket bound to port
     while(true)
     {
         clientlen = sizeof(clientaddr);
