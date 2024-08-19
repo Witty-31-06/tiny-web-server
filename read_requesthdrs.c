@@ -6,7 +6,7 @@ void read_reqesthdrs(rio_t *rio)
     while(strcmp(buf, "\r\n")) //last line empty
     {
         rio_readlineb(rio, buf, MAXLINE);
-        printf("%s", buf);
+        // printf("%s", buf);
     }
     return;
 }
