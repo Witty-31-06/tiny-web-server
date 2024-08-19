@@ -20,11 +20,19 @@ int main(int argc, char **argv)
     listenfd = open_listenfd(argv[1]); //opening listening socket bound to port
     while(true)
     {
+        //Currently the web server supports only one client at a time
         clientlen = sizeof(clientaddr);
         connfd = accept(listenfd, &clientaddr, &clientlen);
         getnameinfo(&clientaddr, clientlen, hostname, MAXLINE, port, MAXLINE, 0);
         printf("Connected with client %s: %s\n", hostname, port);
-        handler(connfd);
+        if(fork() == 0) //child process
+        {
+            close(listenfd); //close the listening socket
+            handler(connfd);
+            close(connfd); //closing the connection
+            exit(0);
+        }
+        // handler(connfd);
         close(connfd); //closing the connection
     }
 }
