@@ -134,7 +134,14 @@ ssize_t rio_readlineb(rio_t *rp, void *usrbuf, size_t maxlen)
 {
     int n, rc;
     char c, *bufp = (char *)usrbuf;
-
+    /**
+     * rio_read reads 8192 (max) bytes from the file
+     * into the internal buffer. 
+     * rio_readlineb reads 1 byte at a time from the internal buffer
+     * this method is more efficient than reading 1 byte
+     * from the file using read because of System call overhead
+     * 
+     */
     for(n = 1; n < maxlen; n++) {
         if((rc = rio_read(rp, &c, 1)) == 1) { //Read 1 byte at a time
             *bufp++ = c;
