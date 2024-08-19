@@ -10,8 +10,7 @@ void handler(int connfd)
     //Read the request
     rio_readinitb(&rio, connfd); //initialize the rio buffer with connfd file descriptor
     rio_readlineb(&rio, request, MAXLINE); //read the client request (from connfd file desc) and store it in request buffer
-    printf("Request Headers: ");
-    printf("%s", request);
+    printf("Request Headers: %s", request);
     sscanf(request, "%s %s %s", method, url, version);
     //HTTP request format is like GET url.com/...?args1&args... HTTP/<version>
 
@@ -22,7 +21,7 @@ void handler(int connfd)
         return;
     }
 
-    read_reqesthdrs(&rio); 
+    read_reqesthdrs(&rio);
     //Neglect rest of the fields in the request. (not necessary for our server)
 
 
