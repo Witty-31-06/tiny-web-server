@@ -27,7 +27,7 @@ void serve_static(int fd, char *filename, int filesize)
 
     //Send response
     srcfd = open(filename, O_RDONLY, 0); //open the requested file in read only mode    
-    srcp = mmap(0, filesize, PROT_READ, MAP_PRIVATE, srcfd, 0); //map the file to memory
+    srcp = mmap(NULL, filesize, PROT_READ, MAP_PRIVATE, srcfd, 0); //map the file to memory
     close(srcfd);
     rio_writen(fd, srcp, filesize);
     munmap(srcp, filesize); //cleanup

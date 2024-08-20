@@ -8,11 +8,9 @@ void serve_dynamic(int connfd, char *filename, char *args)
     sprintf(buf, "Server: Tiny Web Server\r\n");
     rio_writen(connfd, buf, strlen(buf));
     //We fork so that parent can continue handling other clients
-    if(fork() == 0) //in child pid = 0
-    {
-        setenv("QUERY_STRING", args, 1);
-        dup2(connfd, STDOUT_FILENO); //Writing to stdout will write to the client
-        execve(filename, emptylist, environ);
-    }
-    wait(NULL);
+
+    setenv("QUERY_STRING", args, 1);
+    dup2(connfd, STDOUT_FILENO); //Writing to stdout will write to the client
+    execve(filename, emptylist, environ);
+
 }
