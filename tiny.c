@@ -33,6 +33,6 @@ int main(int argc, char **argv)
             exit(0);
         }
         // handler(connfd);
-        close(connfd); //closing the connection
+        close(connfd); //closing the connection of the parent process
     }
 }
